@@ -268,7 +268,10 @@ export default class ConfirmationCodeInput extends Component {
           onFocus={() => this._onFocus(id)}
           value={this.state.codeArr[id] ? this.state.codeArr[id].toString() : ''}
           onChangeText={text => this._onInputCode(text, id)}
-          onKeyPress={(e) => this._onKeyPress(e)}
+          onKeyPress={(e) => {
+            this._onKeyPress(e)
+            if(this.props.onKeyPress) this.props.onKeyPress(e)
+          }}
           maxLength={1}
         />
       )
